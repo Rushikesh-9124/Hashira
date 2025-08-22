@@ -60,7 +60,7 @@ int main() {
         int k = testCases[t]["keys"]["k"];
 
         // 1. Read input
-        cout << "- **1. Read the Test Case (Input) from a  separate JSON file** ✅\n";
+        cout << "- **1. Read the Test Case (Input) from a  separate JSON file**\n";
         cout << "  n = " << n << ", k = " << k << "\n";
 
         vector<pair<int, long long>> points;
@@ -80,7 +80,7 @@ int main() {
         sort(points.begin(), points.end());
 
         // 2. Decode Y values
-        cout << "- **2. Decode the Y Values** ✅\n";
+        cout << "- **2. Decode the Y Values**\n";
         for (auto &p : points) {
             cout << "  (" << p.first << "," << p.second << ")\n";
         }
@@ -90,7 +90,7 @@ int main() {
         double secret = lagrangeInterpolation(subset, k);
 
         // 3. Find Secret
-        cout << "- **3. Find the Secret (C)** ✅\n";
+        cout << "- **3. Find the Secret (C)**\n";
         cout << "  Secret = " << secret << "\n";
     }
 
