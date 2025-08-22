@@ -3,12 +3,11 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
-#include "json.hpp"  // Include nlohmann/json library
+#include "json.hpp" 
 
 using json = nlohmann::json;
 using namespace std;
 
-// Decode number from given base (supports bases up to 36)
 long long decodeFromBase(const string &val, int base) {
     long long result = 0;
     for (char c : val) {
@@ -22,7 +21,6 @@ long long decodeFromBase(const string &val, int base) {
     return result;
 }
 
-// Lagrange interpolation at x = 0 (to extract constant term)
 double lagrangeInterpolation(vector<pair<int, long long>> &points, int k) {
     double secret = 0.0;
 
@@ -52,16 +50,12 @@ int main() {
     json testCases;
     inputFile >> testCases;
 
-    // Loop over all test cases
     for (size_t t = 0; t < testCases.size(); t++) {
         cout << "\n### Assignment Checkpoints (Test Case " << (t + 1) << "):\n";
 
         int n = testCases[t]["keys"]["n"];
         int k = testCases[t]["keys"]["k"];
 
-        // 1. Read input
-        cout << "- **1. Read the Test Case (Input) from a  separate JSON file**\n";
-        cout << "  n = " << n << ", k = " << k << "\n";
 
         vector<pair<int, long long>> points;
 
@@ -76,21 +70,12 @@ int main() {
             points.push_back({x, y});
         }
 
-        // Sort points by x
         sort(points.begin(), points.end());
 
-        // 2. Decode Y values
-        cout << "- **2. Decode the Y Values**\n";
-        for (auto &p : points) {
-            cout << "  (" << p.first << "," << p.second << ")\n";
-        }
-
-        // Take first k points and interpolate
         vector<pair<int, long long>> subset(points.begin(), points.begin() + k);
         double secret = lagrangeInterpolation(subset, k);
 
-        // 3. Find Secret
-        cout << "- **3. Find the Secret (C)**\n";
+        cout << "Secret (C)\n";
         cout << "  Secret = " << secret << "\n";
     }
 
